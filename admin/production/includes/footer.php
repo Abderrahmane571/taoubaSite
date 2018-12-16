@@ -1,7 +1,7 @@
 <?php
-if($_SESSION['user']==1){
+
 require_once "actions/connect.php";
-// 
+
 ?>
     <!-- footer content -->
         <footer>
@@ -512,11 +512,3 @@ function showDaoura(){
 
   </body>
 </html>
-<?php
-	
- }else{
- header("location:login.php");
- }
-
-
-?>

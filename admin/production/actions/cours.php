@@ -38,13 +38,22 @@ if(isset($_POST["addCour"])){
 		//son
 		//copy sound file to audio folder
 		else {
+			
 			if(isset($_FILES["src"])){
-			$dest="../../../audio/";
-			$file_name= $_FILES["src"]["name"];
-			$temp_file=$_FILES["src"]["tmp_name"];
-			move_uploaded_file($temp_file,$dest.$file_name);
-			$src=$file_name;
-			echo $src;
+				
+				$temp=$_FILES['src']['tmp_name']; 
+				$name=$_FILES['src']['name']; 
+				$dest="../../../audio/".addslashes($name);
+				echo $dest;
+				print_r($_FILES['src']);
+				move_uploaded_file($temp,$dest);
+
+			// $dest="../../../audio/";
+			 $file_name= $_FILES["src"]["name"];
+			// $temp_file=$_FILES["src"]["tmp_name"];
+			// move_uploaded_file($temp_file,$dest.$file_name);
+				$src=$file_name;
+			// echo $src;
 			}
 			
 		}
@@ -53,14 +62,14 @@ if(isset($_POST["addCour"])){
 		echo $sql;
 			echo $daoura;
 		echo "lo";
-		if($connect->query($sql)){
-			$_SESSION['success']="Données inserés avec succés..!!";	
-			header("location:../index.php");
+		 if($connect->query($sql)){
+			 $_session['success']="données inserés avec succés..!!";	
+			 header("location:../index.php");
 
-		}
-		else{
+		 }
+		 else{
 			echo "pblm";
-		}
+		 }
 	}
 }
 //update data
@@ -121,12 +130,18 @@ if(isset($_POST["editCour"])){
 		//son
 		//copy sound file to audio folder
 		else{
-			if(!empty($_POST["src"])){
-			$dest="../../../audio/";
-			$file_name= $_FILES["src"]["name"];
-			$temp_file=$_FILES["src"]["tmp_name"];
-			move_uploaded_file($temp_file,$dest.$file_name);
-			$src=$file_name;
+			if(!empty($_FILES["src"])){
+				
+			// $dest="../../../audio/";
+			// $file_name= $_FILES["src"]["name"];
+			// $temp_file=$_FILES["src"]["tmp_name"];
+			$temp=$_FILES['src']['tmp_name']; 
+				$name=$_FILES['src']['name']; 
+				$dest="../../../audio/".addslashes($name);
+  				move_uploaded_file($temp,$dest);
+
+			// move_uploaded_file($temp_file,$dest.$file_name);
+			$src=$name;
 			$id_cour=$_POST["idM"];
 			$sql="UPDATE `cour` SET `src`='$src' where id_cour=".$id_cour;
 			$res=$connect->query($sql);
@@ -147,7 +162,7 @@ if(isset($_POST["editCour"])){
 	}
 	
 	$_SESSION['success']="Données modifiées avec succés..!!";	
-	header("location:../index.php");
+	 header("location:../index.php");
 
 }
 

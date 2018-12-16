@@ -1,5 +1,5 @@
 <?php
-if($_SESSION['user']==1){
+
 require_once "actions/connect.php";
 
 ?>
@@ -337,11 +337,3 @@ if(Uselected==1){
 
   </body>
 </html>
-<?php
-}
-else{
-header("location:login.php");
-}
-
-
-?>
